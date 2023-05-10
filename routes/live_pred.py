@@ -27,6 +27,7 @@ def main():
         faces_detected = face_haar_cascade.detectMultiScale(
             gray_img, 1.1, 6, minSize=(150, 150)
         )
+        print(faces_detected)
 
         for x, y, w, h in faces_detected:
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), thickness=2)
@@ -47,6 +48,7 @@ def main():
                 "fear",
             ]
             predicted_emotion = emotions[max_index]
+            print(predictions, predicted_emotion)
             cv2.putText(
                 img,
                 predicted_emotion,

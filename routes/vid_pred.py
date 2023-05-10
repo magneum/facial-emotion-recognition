@@ -1,12 +1,11 @@
-import argparse
-
 # by M.A.G.N.E.U.M
 # This code builds a facial emotion recognition model using tensorflow keras and fer2013
 
 import cv2
+import argparse
 import numpy as np
-from keras.models import model_from_json
 from keras.preprocessing import image
+from keras.models import model_from_json
 
 
 def main():
