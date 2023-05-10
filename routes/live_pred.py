@@ -1,11 +1,9 @@
-import cv2
-
 # by M.A.G.N.E.U.M
 # This code builds a facial emotion recognition model using tensorflow keras and fer2013
 
+import cv2
 import numpy as np
 from keras.models import model_from_json
-from keras.preprocessing import image
 
 
 def main():
@@ -34,9 +32,9 @@ def main():
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), thickness=2)
             roi_gray = gray_img[y : y + w, x : x + h]
             roi_gray = cv2.resize(roi_gray, (48, 48))
-            img_pixels = image.img_to_array(roi_gray)
+            img_pixels = np.array(roi_gray)
             img_pixels = np.expand_dims(img_pixels, axis=0)
-            img_pixels /= 255.0
+            img_pixels = img_pixels.astype(np.uint8)
             predictions = model.predict(img_pixels)
             max_index = int(np.argmax(predictions))
             emotions = [
@@ -59,7 +57,7 @@ def main():
                 2,
             )
             resized_img = cv2.resize(img, (1000, 700))
-        cv2.imshow("Facial Emotion Recognition", resized_img)
+            cv2.imshow("Facial Emotion Recognition", resized_img)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
     cap.release()
