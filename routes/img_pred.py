@@ -26,7 +26,7 @@ def main():
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         roi_gray = gray_img[y : y + w, x : x + h]
         roi_gray = cv2.resize(roi_gray, (48, 48))
-        img_pixels = image.img_to_array(roi_gray)
+        img_pixels = np.array(roi_gray)
         img_pixels = np.expand_dims(img_pixels, axis=0)
         img_pixels /= 255.0
         predictions = model.predict(img_pixels)
