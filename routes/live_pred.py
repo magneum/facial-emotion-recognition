@@ -9,11 +9,11 @@ from keras.preprocessing import image
 
 
 def main():
-    json_file = open("src/modelbest_model.json", "r")
+    json_file = open("public/best_model.json", "r")
     loaded_model_json = json_file.read()
     json_file.close()
     model = model_from_json(loaded_model_json)
-    model.load_weights("src/modelbest_model.h5")
+    model.load_weights("public/best_model.h5")
     face_haar_cascade = cv2.CascadeClassifier(
         "database/haarcascade_frontalface_default.xml"
     )
@@ -59,7 +59,7 @@ def main():
                 2,
             )
             resized_img = cv2.resize(img, (1000, 700))
-            cv2.imshow("Facial Emotion Recognition", resized_img)
+        cv2.imshow("Facial Emotion Recognition", resized_img)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
     cap.release()
